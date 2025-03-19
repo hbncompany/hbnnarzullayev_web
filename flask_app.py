@@ -5216,3 +5216,7 @@ def download_file(file_id):
         return send_from_directory('/home/hbnnarzullayev/mysite/uploads/saved_files/', file_name, as_attachment=True)
     else:
         return "Fayl topilmadi yoki sizga tegishli emas!", 404
+
+# flask_app.py oxiriga qo‘shing (agar allaqachon mavjud bo‘lmasa):
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=10000)
