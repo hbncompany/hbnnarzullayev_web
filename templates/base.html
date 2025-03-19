@@ -1,0 +1,643 @@
+<!doctype html>
+<html>
+<head>
+  <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PSVN7RL');</script>
+  <!-- End Google Tag Manager -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" data-auto-a11y="true"></script>
+  <script>
+  function clickCounter() {
+    if (typeof(Storage) !== "undefined") {
+      if (localStorage.clickcount) {
+        localStorage.clickcount = Number(localStorage.clickcount)+1;
+      } else {
+        localStorage.clickcount = 1;
+      }
+      document.getElementById("result").innerHTML = "You have clicked the button " + localStorage.clickcount + " time(s).";
+    } else {
+      document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
+    }
+  }
+  </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+    .uploadLabel {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 7px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.uploadLabelRed {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 7px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  background-color: red;
+  color: #ffffff;
+}
+.uploadLabelGreen {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 7px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+
+  background-color: green;
+  color: #ffffff;
+}
+.uploadLabelBlue {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 7px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: blue;
+  color: #ffffff;
+}
+.uploadButton {
+    display: none;
+    color: #337ab7;
+}
+      .news-with-image {
+          width: auto;
+          height: 150px;
+          margin: 0 0 25px 0;
+          border-radius: 13px;
+          display: inline-block;
+          position: relative;
+          overflow: hidden;
+      }
+      a {
+          color: #1e97e7;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          outline: none !important;
+      }
+      a {
+          color: #337ab7;
+          text-decoration: none;
+      }
+      a {
+          background-color: transparent;
+      }
+      * {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+      }
+      .MapBox_box__3H7J- .MapBox_map__3npUQ, .MapBox_box__3H7J- .MapBox_map__3npUQ svg {
+    width: 459px;
+    height: 295px;
+}
+      user agent stylesheet
+      a:-webkit-any-link {
+          color: -webkit-link;
+          cursor: pointer;
+          text-decoration: underline;
+      }
+
+        .news-part {
+            background: #ffffff;
+            padding: 0px 0 50px 0;
+            font-family: "Montserrat-Local";
+        }
+        .news-part .news {
+            float: left;
+            width: calc(100%);
+            padding: 15px 0;
+        }
+        .news-part .news .title {
+            text-align: center;
+            font-weight: bold;
+            font-family: "Montserrat-Local";
+            font-size: 18px;
+            text-transform: uppercase;
+            margin: 0 0 25px 0;
+        }
+        .news-with-image:before {
+            content: '';
+            max-height: auto;
+            display: inline-block;
+            position: absolute;
+            left: auto;
+            right: 0;
+            bottom: 0;
+            top: 20%;
+            background: #0E67C0;
+            background: linear-gradient(180deg, transparent, #2374C5 80%, #0E67C0 100%);
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+        .news-with-image .text {
+            position: absolute;
+            display: block;
+            text-shadow: 1px 1px white;
+            background-color:rgba(0,0,0,0.5);
+            box-shadow: 5px 5px 8px blue, 10px 10px 8px red, 15px 15px 8px green;
+            z-index: 2;
+            bottom: 55px;
+            width:100%;
+            padding: 0 15px;
+            font-family: "Montserrat-Local";
+            font-size: 20px;
+            line-height: 18px;
+            height: 54px;
+            overflow: hidden;
+        }
+        * {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+        .news-part .news ul {
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+            position: relative;
+        }
+.news-part .news ul {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    gap: 0 20px !important;
+}
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 50px;
+    box-shadow: 0 1px 8px #ddd;
+}
+* {
+  margin: 0;
+  padding:0;
+  list-style:none;
+  text-decoration: none;
+}
+.sidebar{
+  position:fixed;
+  z-index: 1;
+  top: 0;
+  right: -255px;
+  width: 250px;
+  height: 100%;
+  background: #042331ce;
+  transition: all .5s ease;
+}
+.sidebar header{
+  font-size: 22px;
+  color: white;
+  text-align: center;
+  line-height: 70px;
+  background: #0eeeee36;
+  user-select: none;
+}
+.sidebar ul a{
+display: block;
+height: 100%;
+width: 100%;
+line-height: 65px;
+font-size: 20px;
+color: white;
+padding-left: 40px;
+box-sizing: border-box;
+border-top: 1px solid rgba(255,255,255,.1);
+border-bottom: 1px solid black;
+transition: .4s;
+}
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive a.icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+ul li:hover a{
+  padding-left: 50px;
+}
+.sidebar ul a i{
+  margin-right: 16px;
+}
+#check{
+  display: block;
+}
+label #btn, label #cancel{
+  position:absolute;
+  cursor: pointer;
+  background: #04233100;
+}
+label #btn{
+  left: 40px;
+  top: 25px;
+  font-size: 35px;
+  color: white;
+  padding: 6px 12px;
+  transition: all 0.5s;
+}
+label #cancel{
+  z-index: 1111;
+  left: -195px;
+  top: 17px;
+  font-size: 30px;
+  color: #0a5275;
+  padding: 4px 9px;
+  transition: all 0.5s ease;
+}
+#check:checked ~ .sidebar{
+  right: 0;
+}
+#check:checked ~ label #btn{
+  right: 250px;
+  opacity: 0;
+  pointer-events: none;
+}
+#check:checked ~ label #cancel{
+  right: 250px;
+}
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+user agent stylesheet
+ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+        .news-with-image .date {
+            position: absolute;
+            display: block;
+            color: #ffffff;
+            z-index: 2;
+            left: auto;
+            bottom: 25px;
+            padding: 0 15px;
+            font-family: "Montserrat-Local";
+            font-size: 13px;
+        }
+
+        .button {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          width:100px;
+          height: 30px;
+          padding: 1px 20px;
+          text-align: start;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+          margin: 4px 2px;
+          cursor: pointer;
+        }
+
+        .button1 {
+          background-color: rgba(207, 204, 11, 0.562);
+          color: black;
+          border: 2px solid #4CAF50;
+        }
+
+        .button2 {
+          background-color: white;
+          width:50px;
+          height: 30px;
+          padding: 0px 0px;
+          color: black;
+          border: 2px solid #0509ffbb;
+        }
+
+        .button3 {
+          background-color: white;
+          color: black;
+          border: 2px solid #f44336;
+        }
+
+        .button4 {
+          background-color: white;
+          width:100px;
+          height: 80px;
+          color: black;
+          border: 2px solid #e7e7e7;
+        }
+
+        .button5 {
+          background-color: white;
+          color: black;
+          border: 2px solid #555555;
+        }
+        .pull-left {
+            float: left !important;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .container {
+            max-width: 1000px;
+        }
+        .containera {
+            max-width: auto;
+        }
+        button {
+        background-color: #04AA6D;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+    }
+    .social_banner{
+        min-height: 330px;
+    }
+       .center {
+  border: 5px solid;
+  margin: 20;
+  position: absolute;
+  border-radius: 8px;
+  left: 30%;
+  padding: 24px;
+}
+       .centera {
+  border: 5px solid;
+  position: absolute;
+  border-radius: 8px;
+  left: 30%;
+}
+.centermusic {
+    width: auto;
+  border: 5px solid;
+  border-radius: 8px;
+  left: 30%;
+}
+    .card-layout {
+        width: 280px;
+        align-self: center;
+        align-items: center;
+        -webkit-box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        padding: 24px;
+        background-image:url("/static/glanc.png");
+        border-radius: 8px;
+        margin: 50;
+        background: #7c7c7c96;
+    }
+    div.a {
+
+        width:700px;
+        height: 160px;
+        padding: 1px 20px;
+        text-align: start;
+        background-color: rgba(17, 187, 243, 0.336);
+    }
+    button:hover {
+        opacity: 0.8;
+    }
+        body{
+            background-image:url('/static/Back im3.jpg');
+            background-repeat: no-repeat, no-repeat;
+            background-position: auto;
+            background-size: 100% 1000%;
+        }
+        #avatar {
+  background-color: antiquewhite;
+  height: 100px;
+  width: 100px;
+  border: 3px solid #0af;
+  border-radius: 50%;
+  transition: background ease-out 200ms;
+}
+::selection {
+    background: #008ddb;
+    color: #fff;
+}
+
+#preview {
+  position: relative;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+button:hover {
+  background-color: #45a;
+}
+#watch-container {
+            font-size: 30px;
+            color: #088395;
+            font-family: "Times New Roman", Times, serif;
+            /*background-color: #088395;*/
+            padding: 10px;
+            /*border: 2px solid #333;*/
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSVN7RL"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+    <input type="checkbox" id="check" style="display:none;position: absolute; z-index: 1;">
+    <label for="check" style="left: 0;">
+      <i class="fa fa-home;" id="btn" style="position: absolute; width: 50px; height: 30px; top: 0; color: #04AA6D; z-index: 1;">=</i>
+      <i class="fa fa-home" id="cancel" style="position: absolute; top: 0; color: #04AA6D; z-index: 1;">B</i>
+    </label>
+    <div class="sidebar">
+      <div id="preview">
+        <div id="avatar" style="float:right;"><img src="/static/Image/{{session['nma']}}.jpg" style="width:100px;height:95px; border-radius: 50%;"></div>
+
+<!--<p>-->
+<!--	{% with messages = get_flashed_messages() %}-->
+<!--	  {% if messages %}-->
+<!--		<ul>-->
+<!--		{% for message in messages %}-->
+<!--		  <li>{{ message }}</li>-->
+<!--		{% endfor %}-->
+<!--		</ul>-->
+<!--	  {% endif %}-->
+<!--	{% endwith %}-->
+<!--</p>-->
+<!--{% if filename %}-->
+<!--	<div>-->
+<!--		<img src="{{ url_for('display_image', filename=filename) }}">-->
+<!--	</div>-->
+<!--{% endif %}-->
+<!--<form method="post" action="/" enctype="multipart/form-data">-->
+<!--    <dl>-->
+<!--		<p>-->
+<!--			<input type="file" name="file" autocomplete="off" required>-->
+<!--		</p>-->
+<!--    </dl>-->
+<!--    <p>-->
+<!--		<input type="submit" value="Submit">-->
+<!--	</p>-->
+      </div>
+        <div style="left: 5px"><a href="/"><img src="/static/logo-no-background.png" alt="HTML tutorial" style="width:100px;height:100px;"></a></div>
+      <div class="fas fa-bars"><a href = "/login">
+        {% for row in value %}
+                <li><i class="fas fa-bars">{{session[nma]}}</i></li>
+        {% endfor %}</a></div>
+      <ul>
+        <li><a href="/"><h3><i class="fas fa-kiwi-bird"></i></h3></a></li>
+        <li><a href="/"><h3><i class="fas fa-kiwi-bird"></i>Bosh sahifa</h3></a></li>
+        <li><a href="/login"><i class="fas fa-kiwi-bird"></i>Login</a></li>
+        <li><a href="/signup"><i class="fas fa-bars"></i>Sign up</a></li>
+        <li><a href="/portal"><i class="fas fa-bars"></i>Portal haqida</a></li>
+        <li><a href="/profile"><i class="fas fa-bars"></i>Profil</a></li>
+        <li><a href="/delete"><i class="fas fa-bars"></i>Akkountni o'chirish</a></li>
+        <li><a href="/Chatdan_adminga_yozing"><i class="fas fa-qrcode"></i>Contacts</a>
+        <li><a href="/chat"><i class="fas fa-qrcode"></i>Chat</a></li>
+      </ul>
+    </div><nav class="navbar navbar-expand-lg navbar-black bg-light">
+        </style>
+        <div class="preloader" style="display: none;"></div>
+        <a href="/"><img src="/static/logo-no-background.png" alt="HTML tutorial" style="width:60px;height:60px;"></a>
+        <a href="/" class="navbar-brand" href="#">Bosh sahifa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon" style="color: #04AA6D;">Down</span>
+	    </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+	        <li class="nav-item active">
+                    <a href="/portal" class="nav-link" href="#">Portal haqida<span class="sr-only">(current)</span></a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" href="#">Maqolalar</a>
+		</li>
+        <li class="nav-item">
+		    <a class="nav-link" href="/music">Musiqalar</a>
+		</li>
+        <li class="nav-item">
+		    <a class="nav-link" href="/table">Table{{msgb}}</a>
+		</li>
+        <li class="nav-item">
+		    <a class="nav-link" href="#">Statistika</a>
+		</li>
+        <li class="nav-item">
+		    <a class="nav-link" href="/profile">Profil</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" href="/questions">Savol-javob</a>
+		</li>
+		<li class="nav-item">
+		    <a class="nav-link" href="/delete">O'chirish(Acc)</a>
+		</li>
+        <div style="position:inherit;" class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <a class="nav-link" href="login">Login(Kirish)</a>
+            </div>
+        </div>
+        <div style="position:inherit;" class="navbar-form navbar-right" role="search">
+            <div class="form-group">
+              <a class="nav-link" href="/logout">Log out(Chiqish)</a>
+                <ul class="dropdown-menu" id="direction-part"><li> <a href="#" data-value="1,2,3,4,5,6,7,8,9"> Все разделы </a> </li><li class="divider"></li><li><a href="#" data-value="0">Солиқчи - тадбиркорга кўмакчи</a></li><li><a href="#" data-value="1">Мурожаатларни юбориш</a></li><li><a href="#" data-value="2">Рўйхатга олиш</a></li><li><a href="#" data-value="3">Ҳисоботларни юбориш</a></li><li><a href="#" data-value="4">Ахборотлар олиш</a></li><li><a href="#" data-value="5">Шахсий маълумотлар</a></li><li><a href="#" data-value="6">Солиқларни тўлаш</a></li><li><a href="#" data-value="7">Ўзаро ҳамкорлик</a></li><li><a href="#" data-value="8">Контрагент билан ҳамкорлик</a></li><li><a href="#" data-value="9">Солиқларни ҳисоблаш</a></li></ul>
+            </div>
+        </div>
+     <!--   <li>-->
+     <!--       <button class="button2" onclick="playAudio()" type="button">Play</button>-->
+     <!--       <button class="button2" onclick="pauseAudio()" type="button">Pause</button>-->
+     <!--   </li>-->
+	    <!--</ul>-->
+     <!--   <audio controls id="myAudio" loop preload>-->
+     <!--      <source src = "https://xitlar.net/mp3/uzbek_mp3/jaloliddin_ahmadaliyev_-_hay_hay_olan.mp3" type = "audio/mpeg">-->
+     <!--      <source src="https://xitlar.net/mp3/uzbek_mp3/jaloliddin_ahmadaliyev_-_janonim_xitlar.mp3" type="audio/mpeg">-->
+     <!--   </audio>-->
+        </div>
+      <div id="watch-container">
+        <!-- The watch content will be updated here -->
+    </div>
+      </div>
+        <tr>
+            <a href="/profile"><td>{{session['nma']}}</td></a>
+        </tr>
+      <a href="/profile"><img src="/static/Image/{{session['nma']}}.jpg" style="width:60px;height:60px; border-radius: 30%;"><img src="/static/qrcode.png" style="width:60px;height:60px; border-radius: 30%;"></a>
+    </nav>
+    <script>
+        const UPLOAD_BUTTON = document.getElementById("upload-button");
+        const FILE_INPUT = document.querySelector("input[type=file]");
+        const AVATAR = document.getElementById("avatar");
+
+        UPLOAD_BUTTON.addEventListener("click", () => FILE_INPUT.click());
+
+        FILE_INPUT.addEventListener("change", event => {
+        const file = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onloadend = () => {
+            AVATAR.setAttribute("aria-label", file.name);
+            AVATAR.style.background = `url(${reader.result}) center center/cover`;
+        };
+        });
+    </script>
+    <script>
+      var x = document.getElementById("myAudio");
+      function playAudio() {
+        x.play();
+      }
+      function pauseAudio() {
+        x.pause();
+      }
+      </script>
+    <script>
+        // Function to update the watch content
+        function updateWatch() {
+            // Use an AJAX request or WebSocket to get real-time data
+            // For this example, we'll use a simple timer
+            const watchContainer = document.getElementById('watch-container');
+            const currentTime = new Date().toLocaleTimeString();
+            watchContainer.innerText = currentTime;
+        }
+
+        // Call updateWatch every second (1000 milliseconds)
+        setInterval(updateWatch, 1000);
+    </script>
+    {% block content %}
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

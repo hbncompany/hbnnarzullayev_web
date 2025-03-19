@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+{% block title %}NL{% endblock %}
+{% block content %}
+<html>
+    <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#category').change(function(){
+                var category = $(this).val();
+
+                // Clear existing options
+                $('#subcategory').empty();
+
+                // Fetch data for the second select based on the chosen category
+                $.get('/get_data/' + category, function(data){
+                    data.forEach(function(date){
+                        // Format date as 'YYYY-MM-DD'
+                        var formattedDate = new Date(date).toISOString().slice(0,10);
+                        $('#subcategory').append($('<option>', {
+                            value: date,
+                            text: formattedDate
+                        }));
+                    });
+                });
+            });
+        });
+    </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Include your custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+<style>
+table, th, td {
+  border:3px solid black;
+  padding:5px;
+  position: -webkit-sticky;
+  position: sticky;
+  border-style:outset;
+}
+.scroll {
+border: none;
+padding: 5px;
+width: auto;
+height: 700px;
+overflow: scroll;
+}
+::-webkit-scrollbar {
+width: 12px;
+height: 12px;
+}
+::-webkit-scrollbar-track {
+border: 1px solid yellowgreen;
+border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+background: yellowgreen;
+border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: #88ba1c;
+}
+</style>
+<body>
+    <!--<div class="container">-->
+        <!-- Loading animation -->
+    <!--    <div id="loading" class="loading-spinner"></div>-->
+    <!--</div>-->
+    <!--<h1>Real-time Date Processing Progress</h1>-->
+    <!--<button onclick="startProcessing()">Start Processing Dates</button>-->
+    <!--<div id="progress"></div>-->
+<div class="center card-layout" style="width:auto; left: 0px;overflow:auto;scrollbar-base-color:gold;">
+    <div style="position:horizontal">
+    <form action="/nl" method="POST">
+    <h3>Amalni bajarish</h3>
+        <!--<p><input type="text" name="nla" placeholder="ID-o'chiriladi"/><input class="button button1" type="submit" value="O'chirish"/></p>-->
+        <label for="filename"></label>
+        <select name="nla" id="nla">
+            <option value="nla">NLA</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button type="submit" class="button button1">Ko'chirish</button>
+    </form>{{msg}}
+    <!--<form action="/nl" method="POST">-->
+    <!--<h3>Amalni bajarish</h3>-->
+        <!--<p><input type="text" name="nla" placeholder="ID-o'chiriladi"/><input class="button button1" type="submit" value="O'chirish"/></p>-->
+    <!--    <label for="filename"></label>-->
+    <!--    <select name="nla_copy" id="nla_copy">-->
+    <!--        <option value="nla_copy">NLA_copy</option>-->
+            <!-- Add more options as needed -->
+    <!--    </select>-->
+    <!--    <button type="submit" class="button button1">Ko'chirish(nla_copy)</button>-->
+    <!--</form>{{msg}}-->
+    <form action="/nl" method="POST">
+    <h3>Amalni bajarish</h3>
+        <!--<p><input type="text" name="nla" placeholder="ID-o'chiriladi"/><input class="button button1" type="submit" value="O'chirish"/></p>-->
+        <label for="filename"></label>
+        <select required name="tin0" id="tin0">
+            <option value="">-- STIRni tanlang --</option>
+                {% for tin in tins %}
+                <option value="{{ tin[0] }}">{{ tin[0] }}</option>
+                {% endfor %}
+        </select>
+        <select name="last_date_srok" id="last_date_srok">
+            <option value="last_date_srok">last_date_srok</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button type="submit" class="button button1" style="width: auto;">last_date_srok</button>
+    </form>{{msg}}
+    <form action="/filter_nl" method="POST">
+    <label>PR_DATES</label>
+    <select required name="tin1" id="tin1">
+        <option value="">-- STIRni tanlang --</option>
+            {% for tin in tins %}
+            <option value="{{ tin[0] }}">{{ tin[0] }}</option>
+            {% endfor %}
+    </select>
+        <!--<p><input type="text" name="nla" placeholder="ID-o'chiriladi"/><input class="button button1" type="submit" value="O'chirish"/></p>-->
+        <label for="filename"></label>
+        <button type="submit" class="button button1">PR_DATES</button>
+    </form>
+    <!--<form action="/saldolash" method="POST">-->
+    <!--<label>Saldolash</label>-->
+    <!--<select required name="tin_saldo" id="tin_saldo">-->
+    <!--    <option value="">-- STIRni tanlang --</option>-->
+    <!--        {% for tin in nl_tins %}-->
+    <!--        <option value="{{ tin[0] }}">{{ tin[0] }}</option>-->
+    <!--        {% endfor %}-->
+    <!--</select>-->
+        <!--<p><input type="text" name="nla" placeholder="ID-o'chiriladi"/><input class="button button1" type="submit" value="O'chirish"/></p>-->
+    <!--    <label for="filename"></label>-->
+    <!--    <button type="submit" class="button button1">Saldolash</button>-->
+    <!--</form>-->
+    <!--<form action="/pr_saldolash" method="POST">-->
+    <!--<label>Pr_saldolash</label>-->
+    <!--<select required name="tin_saldo" id="tin_saldo">-->
+    <!--    <option value="">-- STIRni tanlang --</option>-->
+    <!--        {% for tin_saldo in nl_tins %}-->
+    <!--        <option value="{{ tin_saldo[0] }}">{{ tin_saldo[0] }}</option>-->
+    <!--        {% endfor %}-->
+    <!--</select>-->
+    <!--<input type="radio" id="radio3" name="radio_choice" value="option3">-->
+    <!--<label for="radio3">Sanani tanlang:</label>-->
+    <!--<select name="selected_date1" id="selected_date1">-->
+    <!--    <option value="">-- Sanani tanlang --</option>-->
+    <!--    {% for date in last_saldo_date %}-->
+    <!--    <option value="{{ date }}">{{ date }}</option>-->
+    <!--    {% endfor %}-->
+    <!--        {% for date3 in min_pr_ynl %}-->
+    <!--        <option value="{{ date3 }}">{{ date3 }}</option>-->
+    <!--        {% endfor %}-->
+    <!--        <option value="" selected disabled>--Sanani tanlang--</option>-->
+            <!-- <option value="01-01">-01-01</option> -->
+    <!--</select>-->
+    <!--<label for="radio2">YOKI</label>-->
+
+    <!--<input type="radio" id="radio4" name="radio_choice" value="option4">-->
+    <!--<label for="radio4">Kiriting:</label>-->
+    <!--<input type="text" style="width:110px" name="manual_date" id="manual_date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD"/>-->
+        <!--<p><input type="text" name="nla" placeholder="ID-o'chiriladi"/><input class="button button1" type="submit" value="O'chirish"/></p>-->
+    <!--    <label for="filename"></label>-->
+    <!--    <button type="submit" class="button button1">Pr_saldolash</button>-->
+    <!--</form>-->
+    <form action="/saldo" method="POST">
+    <br>
+    <div class="container">
+        <!-- Loading animation -->
+        <div id="loading" class="loading-spinner"></div>
+    <div id="progress"></div>
+    </div>
+    <h4><label for="radio1">Saldo va pr.penya hisoblash.</label></h4>
+    <select required name="tin_t" id="tin_t">
+        <option value="">-- STIRni tanlang --</option>
+            {% for tin in tins %}
+            <option value="{{ tin[0] }}">{{ tin[0] }}</option>
+            {% endfor %}
+    </select>
+    <input type="radio" id="radio1" name="radio_choice" value="option1">
+    <label for="radio1">Sanani tanlang:</label>
+    <select name="selected_date" id="selected_date">
+        <option value="">-- Sanani tanlang --</option>
+        {% for date in last_saldo_date %}
+        <option value="{{ date }}">{{ date }}</option>
+        {% endfor %}
+            {% for date2 in min_ynl %}
+            <option value="{{ date2 }}-01-01">{{ date2 }}-01-01</option>
+            {% endfor %}
+            <option value="" selected disabled>--Sanani tanlang--</option>
+            <!-- <option value="01-01">-01-01</option> -->
+    </select>
+    <label for="radio2">YOKI</label>
+
+    <input type="radio" id="radio2" name="radio_choice" value="option2">
+    <label for="radio2">Kiriting:</label>
+    <input type="text" style="width:110px" name="manual_date" id="manual_date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD"/>
+    <label for="radio5">Tugash sanasi</label>
+    <input type="text" style="width:110px" name="end_date" id="end_date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD"/>
+
+    <button type="submit" class="button button1">Saldo</button>
+</form>
+    <h3>_____________________________________________________________________________</h3>
+    <!--<h4>Filterlash orqali ko'rish</h4>-->
+    <form action="/nl" method="POST">
+        <select required name="tin2" id="tin2">
+            <option value="">-- STIRni tanlang --</option>
+                {% for tin in tins %}
+                <option value="{{ tin[0] }}">{{ tin[0] }}</option>
+                {% endfor %}
+        </select>
+    <!--<label for="radio2">Filterlash orqali ko'rish</label><br>-->
+    <!--<input type="radio" id="radio2" name="radio_choice2" value="option2">-->
+    <!--<label for="selected_year">Yil:</label>-->
+    <select name="selected_year" id="selected_year">
+        <option value="">-- Yilni tanlang --</option>
+        <option value="2007">2007</option>
+        <option value="2008">2008</option>
+        <option value="2009">2009</option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+        <option value="2017">2017</option>
+        <option value="2018">2018</option>
+        <option value="2019">2019</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+        <option value="2023">2023</option>
+    </select>
+    <select name="selected_na2" id="selected_na2">
+        <option value="">-- Soliq kodini tanlang --</option>
+        <option value="">-- Barchasi --</option>
+            {% for na2_code in na2_codes %}
+            <option value="{{ na2_code[0] }}">{{ na2_code[0] }}</option>
+            {% endfor %}
+    </select>
+
+    <button type="submit" class="button button1">Ko'rish</button>
+</form>
+
+{% if selected_date %}
+<p>Selected Date: {{ selected_date }}</p>
+{% endif %}
+
+<div class="scroll">
+<table>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <thead>
+    <tr>
+        {% for column_name in column_names %}
+            {% if loop.index <= max_columns_to_display %}
+                <th>{{ column_name }}</th>
+            {% endif %}
+        {% endfor %}
+        <th>sum_p</th>
+        <th>uploch_p</th>
+        <th>saldo_tek_p</th>
+    </tr>
+    </thead>
+    <tbody style="color:white;">
+            {% for record in records %}
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td>{{ record[2] }}</td>
+                <td>{{ record[3] }}</td>
+                <td>{{ record[4] }}</td>
+                <td>TIN IS SECURE</td>
+                <td>{{ record[6] }}</td>
+                <td>{{ record[7] }}</td>
+                <td>{{ record[8] }}</td>
+                <td>{{ record[9] }}</td>
+                <td>{{ record[10] }}</td>
+                <td>{{ record[11] }}</td>
+                <td>{{ record[26] }}</td>
+                <td>{{ record[28] }}</td>
+                <td>{{ record[32] }}</td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table></div>
+<div>
+        {% if page > 1 %}
+            <a href="?page={{ page - 1 }}">&#9198;({{ page - 1 }})</a>
+        {% endif %}
+
+        {% if page < total_pages %}
+            <a style="padding: 20px" href="?page={{ page + 1 }}">&#9197;({{ page + 1 }})</a>
+        {% endif %}
+    </div>
+</div>
+<script>
+    const firstSelect = document.getElementById('tin_t');
+    const secondSelect = document.getElementById('selected_date');
+
+    firstSelect.addEventListener('change', () => {
+        // Enable the second select
+        secondSelect.disabled = false;
+
+        // Remove existing options in the second select
+        while (secondSelect.options.length > 1) {
+            secondSelect.remove(1);
+        }
+
+        // Fetch data for the second select based on the chosen category
+        const selectedCategory = firstSelect.value;
+        fetch(`/get_subcategories?tin=${selectedCategory}`)
+            .then(response => response.json())
+            .then(data => {
+                for (const subcategory of data) {
+                    // Assuming subcategory is a valid date string, format it as 'YYYY-MM-DD'
+                    const formattedDate = new Date(subcategory).toISOString().split('T')[0];
+
+                    const option = document.createElement('option');
+                    option.value = formattedDate;
+                    option.textContent = formattedDate;
+                    secondSelect.appendChild(option);
+                }
+            });
+    });
+</script>
+<!--<script>-->
+<!--    const firstSelects = document.getElementById('tin_saldo');-->
+<!--    const secondSelects= document.getElementById('selected_date1');-->
+
+<!--    firstSelects.addEventListener('change', () => {-->
+        // Enable the second select
+<!--        secondSelects.disabled = false;-->
+
+        // Remove existing options in the second select
+<!--        while (secondSelects.options.length > 1) {-->
+<!--            secondSelects.remove(1);-->
+<!--        }-->
+
+        // Fetch data for the second select based on the chosen category
+<!--        const selectedCategory = firstSelects.value;-->
+<!--        fetch(`/get_subcategories1?tin_saldo=${selectedCategory}`)-->
+<!--            .then(response => response.json())-->
+<!--            .then(data => {-->
+<!--                for (const subcategory of data) {-->
+                    // Assuming subcategory is a valid date string, format it as 'YYYY-MM-DD'
+<!--                    const formattedDate = new Date(subcategory).toISOString().split('T')[0];-->
+
+<!--                    const option = document.createElement('option');-->
+<!--                    option.value = formattedDate;-->
+<!--                    option.textContent = formattedDate;-->
+<!--                    secondSelects.appendChild(option);-->
+<!--                }-->
+<!--            });-->
+<!--    });-->
+<!--</script>-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    </body>
+</html>
+{% endblock %}

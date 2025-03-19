@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Download-a{% endblock %}
+{% block content %}
+<html>
+<head>
+    <title>MySQL script</title>
+</head>
+<body>
+<div class="center card-layout" style="width:auto; left: 0px;">
+    <h4>MySQL script natijasini excel faylga yuklash</h4>
+    <form action="/downloada" method="post">
+        <label for="query">SQL scriptni yozing:</label><br>
+        <textarea id="query" name="query" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Excel faylni yuklash">
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

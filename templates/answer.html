@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Answer{% endblock %}
+{% block content %}
+<html>
+<head>
+    <title>Answer</title>
+  <style>
+    /* Style the textarea */
+    textarea {
+      resize: both; /* Allow both horizontal and vertical resizing */
+    }
+  </style>
+</head>
+<body>
+<div class="center card-layout" style="width:auto; left: 0px; width:80%;height:auto">
+    <h4>Javob berish, SAVOL-ID: {{request.form["id"]}}</h4>
+	<div class="msg" style="color:rgb(255, 0, 13);">{{error}}</div>
+    <form action="/answer" method="post">
+        <label for="{{request.form["id"]}}">{{request.form["id"]}}-savolga javob berish</label><br>
+        <select style="display: none" name="question_id" id="question_id">
+            <option value="{{request.form["id"]}}">{{request.form["id"]}}</option>
+        </select>
+        <label for="answer">Javobni yozing:</label><br>
+        <textarea id="answer" name="answer" rows="4" cols="100" maxlength="12000" minlength="15"></textarea><br>
+        <input type="submit" value="Javobni yuklash">
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head><script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
+<meta name="google-site-verification" content="pi_SDBEk4mOJTu7DS9wnTnpWHea4EweJp0hi7VtSLjI" />
+<link rel="icon" href="/static/logo-no-background.png" type="image/x-icon">
+    <title>Home page</title>
+    </head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+    <style>
+        .box {
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        p {
+            font-size: 17px;
+            align-items: center;
+        }
+        .box a {
+            display: inline-block;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 3px;
+        }
+        .modal {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(254, 126, 126, 0.7);
+            transition: all 0.4s;
+            visibility: hidden;
+            opacity: 0;
+        }
+        .content {
+            position: absolute;
+            background: white;
+            width: 400px;
+            padding: 1em 2em;
+            border-radius: 4px;
+        }
+        .modal:target {
+            visibility: visible;
+            opacity: 1;
+        }
+        .box-close {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            color: #fe0606;
+            text-decoration: none;
+            font-size: 30px;
+        }
+        body {
+        background-color: #efefef;
+        }
+
+        .profile-pic {
+            width: 200px;
+            max-height: 200px;
+            display: inline-block;
+        }
+
+        .file-upload {
+            display: none;
+        }
+        .circle {
+            border-radius: 100% !important;
+            overflow: hidden;
+            width: 128px;
+            height: 128px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: 72px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .p-image {
+        position: absolute;
+        top: 167px;
+        right: 30px;
+        color: #666666;
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        }
+        .p-image:hover {
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        }
+        .upload-button {
+        font-size: 1.2em;
+        }
+
+        .upload-button:hover {
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        color: #999;
+        }
+        body {
+  background-color: #efefef;
+}
+
+.profile-pic {
+    width: 200px;
+    max-height: 200px;
+    display: inline-block;
+}
+
+.file-upload {
+    display: none;
+}
+.circle {
+    border-radius: 100% !important;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 72px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.p-image {
+  position: absolute;
+  top: 167px;
+  right: 30px;
+  color: #666666;
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.upload-button {
+  font-size: 1.2em;
+}
+
+.upload-button:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  color: #999;
+}
+    </style>
+    <body>
+        {{data}}
+        {% extends "base.html" %}
+        {% block title %}Home Page{% endblock %}
+        {% block content %}
+        <p></p>
+        <div class="news-part">
+            <div class="container">
+                <div class="news">
+                    <div class="title" style="color: #04AA6D;"><h2><b>Yangiliklar</b></h2></div><amp-ad width="100vw" height="320"
+     type="adsense"
+     data-ad-client="ca-pub-7480088562684396"
+     data-ad-slot="2850413362"
+     data-auto-format="rspv"
+     data-full-width="">
+  <div overflow=""></div><amp-ad width="100vw" height="320"
+     type="adsense"
+     data-ad-client="ca-pub-7480088562684396"
+     data-ad-slot="2850413362"
+     data-auto-format="rspv"
+     data-full-width="">
+  <div overflow=""></div>
+</amp-ad>
+                    <ul>
+                            <li>
+                                <a href="/yangiliklar1" class="news-with-image">
+                                    <img src="/static/abd.avif" alt>
+                                    <span class="text">Yangiliklar</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/videos" class="news-with-image">
+                                    <img src="/static/videos.jpg" alt>
+                                    <span class="text">Videolar</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tax" class="news-with-image">
+                                    <img src="/static/taxation.png" alt>
+                                    <h1><span class="text" style:"color:blue;">Soliq masalalari</span></h1>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/yangiliklar2" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <span class="text">Soliq kodeksi</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/pdftoword" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <span class="text">PDF to WORD</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/upload_excel" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <span class="text">Lotin => Kiril</span>
+                                    <span class="date">EXCEL</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/2" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <span class="text">Yangiliklar 2</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/2" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <span class="text">Yangiliklar 2</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+        </h1>
+    </body>
+</html>

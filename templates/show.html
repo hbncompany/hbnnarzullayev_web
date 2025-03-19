@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Show_tables{% endblock %}
+{% block content %}
+<html>
+<head>
+    <title>Show</title>
+</head>
+<style>
+table, th, td {
+  border:3px solid black;
+  padding:5px;
+  border-style:outset;
+}
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color: teal;}
+</style>
+<body><div>
+    <h1>Jadvalni ko'rish</h1>
+    <form action="/download" method="POST">
+        <label for="filename">Faylni tanlang:</label>
+        <select name="filename" id="filename">
+            <option value="penya">Penya.xls</option>
+            <option value="min_zp">Min_zp.xls</option>
+            <option value="na2">Soliq_kodi.xls</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button type="submit" class="button button1">Yuklash</button>
+    </form>
+    <form method="post" enctype="multipart/form-data">
+        <label for="table_name2">Jadval nomi:</label>
+        <select name="table_name2" required>
+            {% for table in tables %}
+            <option value="{{ table }}">{{ table }}{{ columns }}</option>
+            {% endfor %}
+            {% for column in columns %}
+            <option value="{{ column }}">{{ table }}{{ columns }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" class="button button1" onclick="alert('Mazkur Jadval ma'lumotlari aks ettiriladi)">Ko'rsatish</button>
+        <!--<input type="submit" onclick="alert('Mazkur Jadval ma'lumotlari aks ettiriladi)" value="Ko'rsatish">--></form>
+    <div>
+    <table>
+        <thead>
+            <tr>
+                {% for column_name in column_names %}
+                <th>{{ column_name }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in values %}
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table></div>
+</body>
+</html>
+{% endblock %}

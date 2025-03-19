@@ -1,0 +1,222 @@
+<html>
+<head>
+    <title>Taxation</title>
+    </head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"
+          content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width,
+                   initial-scale=1.0">
+                       <style>
+        .box {
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        p {
+            font-size: 17px;
+            align-items: center;
+        }
+        .box a {
+            display: inline-block;
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 3px;
+        }
+        .modal {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(254, 126, 126, 0.7);
+            transition: all 0.4s;
+            visibility: hidden;
+            opacity: 0;
+        }
+        .content {
+            position: absolute;
+            background: white;
+            width: 400px;
+            padding: 1em 2em;
+            border-radius: 4px;
+        }
+        .modal:target {
+            visibility: visible;
+            opacity: 1;
+        }
+        .box-close {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            color: #fe0606;
+            text-decoration: none;
+            font-size: 30px;
+        }
+        body {
+        background-color: #efefef;
+        }
+
+        .profile-pic {
+            width: 200px;
+            max-height: 200px;
+            display: inline-block;
+        }
+
+        .file-upload {
+            display: none;
+        }
+        .circle {
+            border-radius: 100% !important;
+            overflow: hidden;
+            width: 128px;
+            height: 128px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: 72px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .p-image {
+        position: absolute;
+        top: 167px;
+        right: 30px;
+        color: #666666;
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        }
+        .p-image:hover {
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        }
+        .upload-button {
+        font-size: 1.2em;
+        }
+
+        .upload-button:hover {
+        transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+        color: #999;
+        }
+        body {
+  background-color: #efefef;
+}
+
+.profile-pic {
+    width: 200px;
+    max-height: 200px;
+    display: inline-block;
+}
+
+.file-upload {
+    display: none;
+}
+.circle {
+    border-radius: 100% !important;
+    overflow: hidden;
+    width: 128px;
+    height: 128px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 72px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+.p-image {
+  position: absolute;
+  top: 167px;
+  right: 30px;
+  color: #666666;
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.p-image:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+}
+.upload-button {
+  font-size: 1.2em;
+}
+
+.upload-button:hover {
+  transition: all .3s cubic-bezier(.175, .885, .32, 1.275);
+  color: #999;
+}
+    </style>
+    <body>
+        {{data}}
+        {% extends "base.html" %}
+        {% block title %}Taxation Page{% endblock %}
+        {% block content %}
+        <p></p>
+        <div class="news-part">
+            <div class="container">
+                <div class="news">
+                    <div class="title" style="color: #04AA6D;"><h2><b>Soliqqa oid masalalar</b></h2></div>
+                    <ul>
+                            <li>
+                                <a href="/na2" class="news-with-image">
+                                    <img src="/static/taxes_types.jpg" alt>
+                                    <span class="text">Soliq turlari</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/penya" class="news-with-image">
+                                    <img src="/static/penya.jpg" alt>
+                                    <span class="text">Penya</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/min_zp" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <h1><span class="text" style:"color:blue">BHMS (Bazaviy hisoblash)</span></h1>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/show" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <span class="text">Tanlov asosida soliqqa oid ma'lumotlarni ko'rish</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/nl" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <span class="text">nl</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/tax_details" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <span class="text">Soliq stavkalari (2022-2023)</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/2" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <span class="text">Yangiliklar 2</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="/2" class="news-with-image">
+                                    <img src="/static/abs.webp" alt>
+                                    <span class="text">Yangiliklar 2</span>
+                                    <span class="date">04.04.2023</span>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+        </h1>
+    </body>
+</html>

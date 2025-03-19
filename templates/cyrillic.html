@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+    <title>Excel faylni tarjima qilish</title>
+    <script>
+        function displayFileName() {
+            var fileInput = document.getElementById('excel_file');
+            var fileNameDisplay = document.getElementById('file_name_display');
+            fileNameDisplay.textContent = fileInput.files[0].name;
+        }
+    </script>
+</head>
+<body>
+    <div class="center card-layout">
+        <h3>Excel faylni tanlang va tarjima qilish</h3>
+
+        <form method="POST" enctype="multipart/form-data" action="/upload">
+            <div>
+                <label for="excel_file">Excel faylni tanlang:</label>
+                <label class="uploadLabel"><input type="file" name="file" id="excel_file" class="uploadButton"/>Upload</label>
+                <input type="file" name="file" id="excel_file" onchange="displayFileName()">
+            </div>
+            <div id="file_name_display"></div>
+            <div>
+                <label for="convert_to">Tarjima:</label>
+                <select name="convert_to" id="convert_to">
+                    <option value="cyrillic">Кириллдан лотинга</option>
+                    <option value="latin">Лотиндан кириллга</option>
+                </select>
+            </div>
+            <br>
+            <input type="submit" value="Convert">
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

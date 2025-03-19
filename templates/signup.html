@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}Signup Page{% endblock %}
+<style>
+
+p {
+  background-color: yellow;
+}
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#example1 {
+  border: 10px dashed black;
+  padding: 25px;
+  background: url('/static/abc.jpg');
+  background-repeat: no-repeat;
+  background-origin: padding-box;
+}
+
+#example2 {
+  border: 10px dashed black;
+  padding: 25px;
+  background: url(paper.gif);
+  background-repeat: no-repeat;
+  background-origin: border-box;
+}
+
+#example3 {
+  border: 10px dashed black;
+  padding: 25px;
+  background: url(paper.gif);
+  background-repeat: no-repeat;
+  background-origin: content-box;
+}
+</style>
+{% block content %}
+<div style = "left:20%; width: 280px; height: auto; top:5px;">
+<form method="post" action="/signup">
+    <body>
+      <div class="center card-layout">
+        <form action="{{ url_for('signup')}}" method="post" autocomplete="off">
+        <div class="msg">{{msg}}{{ request.form['username'] }}</div>
+        <a href = '/login' style="color:rgb(255, 0, 0);">S I G N  U P ...</a>
+        <p style="color:rgb(255, 0, 0);">Ism(Nik):</p>
+        <p><input type="text" name="username" placeholder="Enter your username"/></p>
+        <p style="color:rgb(255, 0, 0);">Email:</p>
+        <p><input type="text" name="email" placeholder="Enter your email"/></p>
+        <p style="color:rgb(255, 0, 13);">Parol:</p>
+        <p><input type="password" name="pwd" placeholder="Enter your password"/></p>
+        <p style="color:rgb(255, 0, 13);">Parolni tasdiqlash:</p>
+        <p><input type="password" name="pwdc" placeholder="Confirm your password"/></p>
+        <p><input class="button button1" type="submit" value="Submit"/> <a class="button button1" href="/login">Login</a></p><br>
+        <label style="color:rgb(94, 255, 0);">
+          <input type="checkbox" checked="checked" name="remember"> Eslab qol
+        </label>
+    <table class="table table-striped" style="max-width: 300px;">
+        <thead>
+          <div id="example1" style="width: 1241px;">
+          <tr>
+            <th style="color:rgb(94, 255, 0);">Hush</th>
+            <th style="color:rgb(94, 255, 0);">Kelibsiz!</th>
+          </tr>
+          </div>
+        </thead>
+      </table>
+    </div>
+    </body>
+</div>
+</form>
+{% endblock %}

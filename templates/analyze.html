@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forex Chart Analysis</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Forex Chart Analysis</h1>
+
+    <!-- Form -->
+    <form id="analyzeForm">
+        <label for="symbol">Symbol:</label>
+        <input type="text" id="symbol" name="symbol" required>
+        <label for="interval">Interval:</label>
+        <select id="interval" name="interval" required>
+            <option value="1min">1 Minute</option>
+            <option value="5min">5 Minutes</option>
+            <option value="1h">1 Hour</option>
+        </select>
+        <button type="submit">Analyze</button>
+    </form>
+
+    <!-- Chart -->
+    <canvas id="forexChart" width="800" height="400"></canvas>
+
+    <!-- Advice -->
+    <div id="adviceSection"></div>
+
+    <script>
+        const ctx = document.getElementById('forexChart').getContext('2d');
+        let forexChart;
+
+        document.getElementById('analyzeForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            const symbol = document.getElementById('symbol').value;
+            const interval = document.getElementById('interval').value;
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ symbol, interval })
+                });
+
+                const data = await response.json();
+                console.log(data); // Debugging
+
+                // Parse and map chart data
+                const chartData = JSON.parse(data.chart_data);
+                const labels = chartData.map(item => item.datetime);
+                const prices = chartData.map(item => item.close);
+
+                // Update chart
+                if (forexChart) forexChart.destroy();
+                forexChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: `Close Prices for ${symbol}`,
+                            data: prices,
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 2,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Time'
+                                }
+                            },
+                            y: {
+                                title: {
+                                    display: true,
+                                    text: 'Price'
+                                }
+                            }
+                        }
+                    }
+                });
+
+                // Display advice
+                const adviceSection = document.getElementById('adviceSection');
+                const advice = data.advice;
+                adviceSection.innerHTML = `
+                    <h2>Trading Advice</h2>
+                    <p><strong>Buy:</strong> ${advice.buy}</p>
+                    <p><strong>Sell:</strong> ${advice.sell}</p>
+                    <p><strong>Take Profit:</strong> ${advice.take_profit || 'N/A'}</p>
+                    <p><strong>Stop Loss:</strong> ${advice.stop_loss || 'N/A'}</p>
+                `;
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching data.');
+            }
+        });
+    </script>
+</body>
+</html>

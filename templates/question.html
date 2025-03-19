@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Question{% endblock %}
+{% block content %}
+<html>
+<head>
+    <title>Question</title>
+  <style>
+    /* Style the textarea */
+    textarea {
+      resize: both; /* Allow both horizontal and vertical resizing */
+    }
+  </style>
+</head>
+<body>
+<div class="center card-layout" style="width:auto; left: 0px; width:80%;height:auto">
+    <h4>Savolni kiritish</h4>
+	<div class="msg" style="color:rgb(255, 0, 13);">{{error}}</div>
+    <form action="/question_add" method="post">
+        <label for="question_head">Savol mazmunini yozing:</label><br>
+        <textarea id="question_head" name="question_head" rows="2" cols="50" maxlength="55" minlength="5"></textarea><br>
+        <label for="query">Savolni yozing:</label><br>
+        <textarea id="query" name="query" rows="4" cols="100" maxlength="12000" minlength="15"></textarea><br>
+        <input type="submit" value="Savolni yuklash">
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

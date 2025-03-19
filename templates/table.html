@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Users Page{% endblock %}
+{% block content %}
+<html>
+<style>
+table, th, td {
+  border:3px solid black;
+  padding:5px;
+  border-style:outset;
+}
+</style>
+<div style="lef:0"><form action="#" method="post" href="/cut">
+<div class="center card-layout" style="width:64%; left: 18%;"><div>
+    <p style="color:blue;">ID (ushbu id raqamli foydalanuvchi <a style="color:rgb(255, 0, 0);">o'chiriladi</a><a style="color:blue;">. Bir nechta foydalanuvchini o'chirish uchun n','m','k ko'rinishida yozing)</a></p>
+    <p><input type="text" name="ids" placeholder="ID-o'chiriladi"/><input class="button button1" type="submit" value="O'chirish"/></p>
+    <div class="msg">{{msg}}</div>
+    <div class="msg">{{msgg}}{{ request.form['ids'] }}</div>
+</form>
+    <p><a class="button button1" href="/upload">Qo'shish</a><a>(Yangi foydalanuvchilar ro'yxatini qo'shish)</a></p>
+    <p><a class="button button1" href="/downloada">Yuklash</a><a>(SQL script orqali excel faylga natijani yuklash)</a></p>
+<div style="width:auto; left: 18%;">
+    <div>
+    <table>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <thead>">
+        <tr>
+    <tr style="color:blue;">
+        <th>№</th>
+        <th>Nik</th>
+        <th>Email</th>
+        <th>Parol</th>
+        <th>ID</th>
+        <th>Ro'yxatdan o'tgan davr</th>
+        <th>File yuklangan davr</th>
+    </tr>
+    </thead>
+    <tbody style="color:white;">
+        {% for row in value %}
+            <tr>
+                <th>1</th>
+                <td>{{row[0]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[3]}}</td>
+                <td>{{row[4]}}</td>
+                <td>{{row[5]}}</td>
+                <tr>
+        <form action="/cut" method="POST">
+        <select style="display: none" name="del" id="filename" value="{{row[3]}}">
+            <option value="{{ row[3] }}">{{ value[3] }}</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button type="submit" class="button">Delete</button>
+    </form>
+                <!--<td><a href="{{ columns }}"><button class="button button1" value="{{ row[0] }}"></button></a></td>-->
+            </tr>
+        {% endfor %}
+    </tbody>
+</table></div></div>
+</html>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Watershunoslik{% endblock %}
+{% block content %}
+<html>
+<style>
+table, th, td {
+  border:3px solid black;
+  padding:5px;
+  border-style:outset;
+}
+</style>
+<form action="#" method="post" action="/table">
+<div class="center card-layout" style="width:auto; left: 0px;">
+</form>
+    <h3>Faylni yuklash</h3>
+    <form action="/download" method="POST">
+        <label for="filename">Faylni tanlang:</label>
+        <select name="filename" id="filename">
+            <option value="na2">Soliq kodlari</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button type="submit" class="button button1">Download</button>
+    </form>
+<table>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <thead>
+    <tr style="color:blue;">
+        <th>№</th>
+        <th>Soliq kodi</th>
+        <th>Nomi</th>
+        <th>Nomi(rus)</th>
+    </tr>
+    </thead>
+    <tbody style="color:white;">
+            {% for record in records %}
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td>{{ record[4] }}</td>
+                <td>{{ record[2] }}</td>
+                <!-- Add more columns to display other record fields -->
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
+<div>
+        {% if page > 1 %}
+            <a href="?page={{ page - 1 }}">&#9198;({{ page - 1 }})</a>
+        {% endif %}
+
+        {% if page < total_pages %}
+            <a style="padding: 20px" href="?page={{ page + 1 }}">&#9197;({{ page + 1 }})</a>
+        {% endif %}
+    </div>
+</div>
+</html>
+{% endblock %}

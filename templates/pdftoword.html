@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+<html>
+<head>
+    <title>PDF to Word Converter</title>
+</head>
+<body>
+    <div class="center card-layout">
+    <h3>PDF faylni WORD faylga aylantirish</h3>
+
+    <form method="POST" enctype="multipart/form-data">
+        <div>
+        <label for="image_uploads">PDF faylni tanlang:</label>
+        <p>_____________________________________</p>
+        <label class="uploadLabel"><input type="file" name="pdf_file" class="uploadButton"/>Upload</label>
+        <br><br>
+        <input type="submit" value="Convert">
+    </form>
+    </div>
+</body>
+</html>
+{% endblock %}

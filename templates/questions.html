@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Questions{% endblock %}
+{% block content %}
+<html lang="Uz">
+<head>
+    <title>Savollar</title>
+<style>
+table, th, td {
+  border:3px solid black;
+  padding:5px;
+  border-style:outset;
+}
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color: teal;}
+</style>
+</head>
+<body>
+    <h1>Savollar</h1><p class="right:10px"></p><a class="button button1 width:20%" style="right:20%" href="/question_add">Qo'shish</a></p>
+    <div class="card-layout" style="width:auto">
+        {% for value in values %}
+        <tr>
+            <div style="horizontal-align:middle;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 14px;">
+        <form action="/answer" method="POST">
+        <select style="display: none" name="id" id="filename" value="{{ value[3] }}">
+            <option value="{{ value[3] }}">{{ value[3] }}</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button type="submit" class="button">Javob</button>
+    </form>
+    <form action="/questions" method="POST">
+        <select style="display: none" name="id1" id="id1" value="{{ value[3] }}">
+            <option value="{{ value[3] }}">{{ value[3] }}</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button type="submit" class="button">Javoblar</button>
+    </form></div>
+            <div style="width:50%"><a align="left">{{ value[0] }}</a></div><div style="width:50%"><a align="right">{{ value[4] }}</a></div><br/>
+            <td>{{ value[1] }}</td>
+            <td>{{ value[2] }}</td>
+            <td>{{ value[3] }}</td>
+            <td>{{ value[5] }}</td>
+            <!-- Add more columns to display other record fields -->
+        </tr>
+        {% endfor %}
+    </div><div>
+    <table>
+        <thead>
+            <tr>
+                {% for column_name in column_names_1 %}
+                <th>{{ column_name }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in answers %}
+            <tr>
+                {% for value in row %}
+                <td>{{ value }}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table></div>
+<div>
+        {% if page > 1 %}
+            <a href="?page={{ page - 1 }}">&#9198;({{ page - 1 }})</a>
+        {% endif %}
+
+        {% if page < total_pages %}
+            <a style="padding: 20px" href="?page={{ page + 1 }}">&#9197;({{ page + 1 }})</a>
+        {% endif %}
+    </div>
+</div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+
+$('.live-search-list li').each(function(){
+$(this).attr('data-search-term', $(this).text().toLowerCase());
+});
+
+$('.live-search-box').on('keyup', function(){
+
+var searchTerm = $(this).val().toLowerCase();
+
+    $('.live-search-list li').each(function(){
+
+        if ($(this).filter('[data-search-term *= ' + searchTerm + ']').length > 0 || searchTerm.length < 1) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+
+    });
+
+});
+
+});
+</script>
+</body>
+</html>
+{% endblock %}

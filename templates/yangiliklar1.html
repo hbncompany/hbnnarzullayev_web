@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <title>Home page</title>
+    </head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" 
+          content="IE=edge">
+    <meta name="viewport" 
+          content="width=device-width, 
+                   initial-scale=1.0">
+    <style>
+        *, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+        .article-pharagraph-left-border {
+    padding: 8px 16px 8px 22px;
+    border-left: 1px solid var(--grey-400);
+    position: relative;
+    margin-bottom: 24px;
+    background-color: var(--blc-quote);
+    border-radius: 4px;
+    width: 100%;
+}
+.article-pharagraph-left-border::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -1px;
+    height: 48px;
+    width: 4px;
+    background-color: var(--base-red);
+}
+    </style>
+    <body>
+        {% extends "base.html" %}
+        {% block title %}Home Page{% endblock %}
+        {% block content %}
+        <div class="card-layout" style = "position:relative; scrollbar-highlight-color: #fe0606 ; width: 1600px; left: 3%;">
+            <li>
+                <a href="/yangiliklar1" class="news-with-image" style="width: 1550px; height: 500px;">
+                    <img src="/static/abd.avif" alt>
+                    <span class="text">Yangiliklar 1</span>
+                    <span class="date">04.04.2023</span>
+                </a>
+            </li>
+            <p style="color: bisque;">
+                Гарварднинг ахборот технологиялари ва тиббиёт бўйича мутахассиси доктор Айзек Кохейн икки ҳамкасби билан бирга GPT-4 версиядаги ChatGPT сунъий интеллектини тиббий соҳада синаб кўрди. Тадқиқотчи GPT-4 тизими кўплаб шифокорлардан яхшироқ эканига амин бўлди. Бу ҳақда “3d news” хабар  берди.
+            </p>
+            <p style="color: bisque;">
+                Доктор Айзек Кохейн тажриба натижаларини мустақил журналист Кэри Голдберг ва Microsoft'нинг тадқиқотлар бўйича вице-президенти Питер Ли билан ҳамммуаллифликда ёзган “Тиббиётда сунъий интеллект инқилоби” китобида батафсил баён қилган. Март ойида чиқарилган GPT-4 модели тиббий лицензиялаш имтиҳонида 90% натижа қайд этиб, нафақат GPT-3 ва GPT-3.5 асосидаги ChatGPT сунъий интеллектини, балки лицензияга эга бўлган баъзи шифокорларни ҳам ортда қолдирган.
+            </p>
+            <p style="color: bisque;">
+                GPT-4 нафақат фактлар бўйича, балки таржимон сифатида ҳам ўзини яхши кўрсатган. У беморнинг португал тилидаги касаллик тарихини саралаб, жаргонли матнни олтинчи синф ўқувчиси тушуна оладиган материалга айлантирган. Сунъий интеллект шифокорларга палатада ўзини қандай тутиш ва бемор билан уларнинг аҳволи ҳақида аниқ, аммо раҳмдил тилда қандай гапириш бўйича фойдали маслаҳатлар берган. Шунингдек, у катта ҳажмдаги экспертиза ҳисоботларини қайта ишлашга, уларнинг мазмунини бир зумда умумлаштиришга муваффақ бўлган.
+            </p><div class="article-pharagraph-left-border" style="color: bisque;"><blockquote>
+                <p>“Менинг ниятим ҳеч кимни алдаш ёки йўлдан оздириш эмас, лекин мен баъзан хато ва тўлиқ бўлмаган ёки нотўғри маълумотларга асосланиб тахминлар қиламан. Мен клиник ҳукмлар чиқармайман ва шифокор ёки ҳамшира сифатида ахлоқий жавобгарликка эга эмасман”, деган GPT-4 моделидаги сунъий интеллект ўз ҳимояси учун.</p>
+                </blockquote></div>
+        </div>
+        {% endblock %}
+        </h1>
+    </body>
+</html>

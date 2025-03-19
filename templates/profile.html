@@ -1,0 +1,90 @@
+<h2>Profile Page</h2>
+<style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+table, th, td {
+  border:3px solid black;
+  padding:5px;
+  border-style:outset;
+}
+th {
+  background-color: #04AA6D;
+  color: white;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color: teal;}
+</style>
+</body>
+<div style="background-image: url(/static/Backgr1.jpg); position:relative; left:00%; top:5px; height: auto; width: 450px; border: 1px solid black;" class="card-layout conatiner">
+
+        <a href="/"><i class="fas fa-bars"></i>Bosh sahifa</a>
+    <h1>Profil rasmini yuklash(.jpg)</h1>
+      <a href="/profile"><img src="/static/Image/{{session['nma']}}.jpg" style="width:60px;height:60px; border-radius: 30%;"></a>
+    <form method="POST" action="/profile" enctype="multipart/form-data">
+  <input type="file" name="file" accept="image/*">
+      <div id="preview">
+        <div id="avatar" style="float:left;"></div>
+  <input type="submit" value="Yangilash">
+</form>
+    <form method="post" action="/verify" method="PST">
+        <p style="color:rgb(255, 0, 0);">Emailni tasdiqlash:</p>
+        <p><input type="text" name="email" placeholder="Enter your email"/></p>
+        <p><input class="button button1" type="submit" value="Kod yuborish"/></p><br>
+    </form>
+<h1>Login va Parolni yangilash</h1>
+    <form method="POST" action="/update_login">
+        <p style="color:rgb(255, 0, 0);">Ism(Nik):</p>
+        <p><input type="text" name="new_username" placeholder="Enter your new username"/></p>
+        <p style="color:rgb(255, 0, 13);">Parol:</p>
+        <p><input type="password" name="new_password" placeholder="Enter your new password"/><i class="far fa-eye" id="togglePassword" style="margin-left: -30px; cursor: pointer;"></i></p>
+  <input type="submit" value="Yangilash">
+</form>
+<div class="center card-layout" style="width:auto; position:centered;">
+    <p>{{ rowid }}{{ error }}  Sizning akkount ma'lumotlaringiz:</p>
+    <table>
+        <tr>
+            <th>Username(Nik):__  </th>
+            <th>Parol:__  </th>
+            <th>Email:__  </th>
+            <th>ID:__  </th>
+        </tr>
+        {% for row in value %}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+            </tr>
+            <tr>
+                <td>{{session['nma']}}</td>
+                <td>{{session['pwda']}}</td>
+                <td>{{row[2]}}</td>
+                <td>{{row[3]}}</td>
+            </tr>
+        {% endfor %}
+</table>
+</div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        const UPLOAD_BUTTON = document.getElementById("upload-button");
+        const FILE_INPUT = document.querySelector("input[type=file]");
+        const AVATAR = document.getElementById("avatar");
+
+        UPLOAD_BUTTON.addEventListener("click", () => FILE_INPUT.click());
+
+        FILE_INPUT.addEventListener("change", event => {
+        const file = event.target.files[0];
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onloadend = () => {
+            AVATAR.setAttribute("aria-label", file.name);
+            AVATAR.style.background = `url(${reader.result}) center center/cover`;
+        };
+        });
+    </script>

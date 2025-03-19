@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Async Task Example</title>
+</head>
+<body>
+    <h1>Async Task Example</h1>
+    <form id="task-form">
+        <button id="start-button" type="button">Start Background Task</button>
+    </form>
+    <form action="/nl" method="POST">
+    <h3>Amalni bajarish</h3>
+        <!--<p><input type="text" name="nla" placeholder="ID-o'chiriladi"/><input class="button button1" type="submit" value="O'chirish"/></p>-->
+        <label for="filename"></label>
+        <select name="nla" id="nla">
+            <option value="nla">NLA</option>
+            <!-- Add more options as needed -->
+        </select>
+        <button type="submit" class="button button1">NLAga</button>
+    </form>{{msg}}
+    <form action="/filter_nl" method="POST">
+    <label>PR_DATES</label>
+        <!--<p><input type="text" name="nla" placeholder="ID-o'chiriladi"/><input class="button button1" type="submit" value="O'chirish"/></p>-->
+        <label for="filename"></label>
+        <button type="submit" class="button button1">PR_DATES</button>
+    </form>
+    <form action="/saldo" method="POST">
+    <br>
+    <h4><label for="radio1">Saldo va pr.penya hisoblash.</label></h4>
+    <input type="radio" id="radio1" name="radio_choice" value="option1">
+    <label for="radio1">Sanani tanlang:</label>
+    <select name="selected_date" id="selected_date">
+        <option value="">-- Sanani tanlang --</option>
+        {% for date in last_saldo_date %}
+        <option value="{{ date }}">{{ date }}</option>
+        {% endfor %}
+            {% for date2 in min_ynl %}
+            <option value="{{ date2 }}-01-01">{{ date2 }}-01-01</option>
+            {% endfor %}
+    </select>
+    <label for="radio2">YOKI</label>
+
+    <input type="radio" id="radio2" name="radio_choice" value="option2">
+    <label for="radio2">Kiriting:</label>
+    <input type="text" style="width:110px" name="manual_date" id="manual_date" pattern="\d{4}-\d{2}-\d{2}" placeholder="YYYY-MM-DD"/>
+
+    <button type="submit" class="button button1">Saldo</button>
+</form>
+    <div id="status"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const startButton = document.getElementById('start-button');
+            const statusDiv = document.getElementById('status');
+
+            startButton.addEventListener('click', async function () {
+                startButton.disabled = true;
+                const response = await fetch('/start_task', {
+                    method: 'POST'
+                });
+                const result = await response.json();
+                const taskID = result.task_id;
+
+                // Poll for task status
+                const getStatus = async () => {
+                    const statusResponse = await fetch(`/get_status/${taskID}`);
+                    const statusResult = await statusResponse.json();
+                    statusDiv.textContent = `Task Status: ${statusResult.status}`;
+
+                    if (statusResult.status === 'running') {
+                        setTimeout(getStatus, 1000);  // Poll every 1 second
+                    }
+                };
+
+                getStatus();
+            });
+        });
+    </script>
+</body>
+</html>

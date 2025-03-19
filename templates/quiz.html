@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block title %}Quizes{% endblock %}
+{% block content %}
+<html>
+<head>
+    <title>Quizes</title>
+  <style>
+    /* Style the textarea */
+    textarea {
+      resize: both; /* Allow both horizontal and vertical resizing */
+    }
+  </style>
+</head>
+<body>
+<div class="center card-layout" style="width:auto; left: 0px; width:80%;height:auto">
+    <h4>Savolni kiritish</h4>
+	<div class="msg" style="color:rgb(255, 0, 13);"></div>
+    <form action="/quiz" method="post">
+        <textarea id="quiz" name="quiz" rows="1" cols="100" maxlength="12000" minlength="5"  placeholder="Savol"></textarea><br>
+        <textarea id="option1" name="option1" rows="1" cols="100" maxlength="12000" minlength="1" placeholder="Option 1"></textarea><br>
+        <textarea id="option2" name="option2" rows="1" cols="100" maxlength="12000" minlength="1" placeholder="Option 2"></textarea><br>
+        <textarea id="option3" name="option3" rows="1" cols="100" maxlength="12000" minlength="1" placeholder="Option 3"></textarea><br>
+        <textarea id="option4" name="option4" rows="1" cols="100" maxlength="12000" minlength="1" placeholder="Option 4"></textarea><br>
+        <input type="submit" value="Savolni yuklash">
+    </form>
+</div>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,75 @@
+<html>
+<head>
+    <title>Upload</title>
+    <script>
+        function displayFileName() {
+            var fileInput = document.getElementById('excel_file');
+            var fileNameDisplay = document.getElementById('file_name_display');
+            fileNameDisplay.textContent = fileInput.files[0].name;
+        }
+    </script>
+</head>
+<body><div>
+    <a href="/"><i class="fas fa-bars"></i>Bosh sahifa</a>
+    <h1>Excel faylni yuklash(.xls)</h1>
+    <h3>{{msg}}</h3>
+    <form method="post" enctype="multipart/form-data">
+        <div>
+        <label for="file">Exel faylni tanlang:</label>
+        <input type="file" name="file" accept=".xlsx, .xls" onchange="displayFileName()" required><br>
+        </div>
+        <label for="table_name">Jadval nomi:</label>
+        <select name="table_name" required>
+            {% for table in tables %}
+            <option value="{{ table }}">{{ table }}{{ columns }}</option>
+            {% endfor %}
+            {% for column in columns %}
+            <option value="{{ column }}">{{ table }}{{ columns }}</option>
+            {% endfor %}
+        </select><br>
+
+        <input type="submit" onclick="alert('Fayl ushbu jadvalga yuklanadi')" value="Yuklash">
+    <div>
+    </form><form method="get" enctype="multipart/form-data">
+        <label for="table_name1">Jadval nomi:</label>
+        <select name="table_name1" required>
+            {% for table in tables %}
+            <option value="{{ table }}">{{ table }}{{ columns }}</option>
+            {% endfor %}
+            {% for column in columns %}
+            <option value="{{ column }}">{{ table }}{{ columns }}</option>
+            {% endfor %}
+        </select><br>
+        <input type="submit" onclick="alert('Fayl ushbu jadvalga yuklanadia')" value="Yuklash1">
+    </form>
+<table>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <thead>
+    <tr style="color:blue;">
+        <th>№</th>
+        <th>Nik</th>
+        <th>Email</th>
+        <th>Parol</th>
+        <th>ID</th>
+        <th>Ro'yxatdan o'tgan davr</th>
+        <th>File yuklangan davr</th>
+        <th>DEL</th>
+    </tr>
+    </thead>
+    <tbody style="color:black;">
+        {% for column in values %}
+            <tr>
+                <th>1</th>
+                <td>{{column[0]}}</td>
+                <td>{{column[2]}}</td>
+                <td>{{column[1]}}</td>
+                <td>{{column[3]}}</td>
+                <td>{{column[4]}}</td>
+                <td>{{column[5]}}</td>
+                <td><a href="{{ values }}"><button class="button button1" value="{{ column[0] }}"></button></a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table></div>
+</body>
+</html>
