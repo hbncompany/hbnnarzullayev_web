@@ -12,7 +12,7 @@ pandas==2.2.1              # DataFrame va ma'lumotlar tahlili uchun
 numpy==1.26.4              # Matematik hisob-kitoblar uchun
 requests==2.31.0           # HTTP so‘rovlari uchun
 mysql-connector-python==8.3.0  # MySQL bilan ulanish uchun
-MySQL-python==1.2.5        # Eski MySQL driver (agar kerak bo‘lsa, lekin tavsiya etilmaydi)
+#MySQL-python==1.2.5        # Eski MySQL driver (agar kerak bo‘lsa, lekin tavsiya etilmaydi)
 passlib==1.7.4             # Parolni shifrlash uchun (sha256_crypt)
 itsdangerous==2.1.2        # Token generatsiyasi uchun
 celery==5.3.6              # Vazifalarni fon rejimida bajarish uchun
