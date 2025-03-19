@@ -1,2 +1,29 @@
 Flask==2.3.2
 gunicorn==20.1.0
+Flask-Cors==4.0.0          # CORS uchun
+Flask-Login==0.6.3         # Foydalanuvchi autentifikatsiyasi uchun
+Flask-Mail==0.9.1          # Email yuborish uchun
+Flask-MySQLdb==2.0.0       # MySQL bilan ishlash uchun (Python 3 uchun)
+Flask-SQLAlchemy==3.0.5    # SQLAlchemy ORM integratsiyasi
+Flask-SocketIO==5.3.6      # Real-time Socket.IO integratsiyasi
+Werkzeug==2.3.8            # Flask bilan birga keladigan WSGI vositasi
+gunicorn==20.1.0           # Production server (Render uchun)
+pandas==2.2.1              # DataFrame va ma'lumotlar tahlili uchun
+numpy==1.26.4              # Matematik hisob-kitoblar uchun
+requests==2.31.0           # HTTP so‘rovlari uchun
+mysql-connector-python==8.3.0  # MySQL bilan ulanish uchun
+MySQL-python==1.2.5        # Eski MySQL driver (agar kerak bo‘lsa, lekin tavsiya etilmaydi)
+passlib==1.7.4             # Parolni shifrlash uchun (sha256_crypt)
+itsdangerous==2.1.2        # Token generatsiyasi uchun
+celery==5.3.6              # Vazifalarni fon rejimida bajarish uchun
+redis==5.0.3               # Redis caching va Celery uchun
+python-telegram-bot==13.15 # Telegram botlari uchun (eski versiya)
+telegram==0.0.1            # Telegram API bilan ishlash uchun (ehtiyotkorlik bilan)
+yfinance==0.2.37           # Yahoo Finance ma'lumotlari uchun
+pandas-ta==0.3.14b0        # Texnik tahlil uchun pandas qo‘shimchasi
+forex-python==1.8          # Valyuta konvertatsiyasi uchun
+ta==0.11.0                 # Texnik tahlil kutubxonasi
+matplotlib==3.8.3          # Grafiklar chizish uchun
+twelvedata==1.2.9          # Twelve Data API uchun
+pdf2docx==0.5.8            # PDF dan DOCX ga o‘tkazish uchun
+flask-oauthlib==0.9.6      # OAuth integratsiyasi uchun
